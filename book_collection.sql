@@ -42,6 +42,35 @@ INSERT INTO `authors` VALUES (1,'Stephen','King',1947),(2,'Robert','Jordan',1948
 UNLOCK TABLES;
 
 --
+-- Table structure for table `book_copies`
+--
+
+DROP TABLE IF EXISTS `book_copies`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `book_copies` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `book_id` int NOT NULL,
+  `format` varchar(255) DEFAULT NULL,
+  `book_condition` varchar(255) DEFAULT NULL,
+  `acquisition_date` date DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `book_id` (`book_id`),
+  CONSTRAINT `book_copies_ibfk_1` FOREIGN KEY (`book_id`) REFERENCES `books` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `book_copies`
+--
+
+LOCK TABLES `book_copies` WRITE;
+/*!40000 ALTER TABLE `book_copies` DISABLE KEYS */;
+INSERT INTO `book_copies` VALUES (1,6,'Paperback','Good','2024-01-01'),(2,7,'Paperback','Good','2024-01-01'),(3,8,'Paperback','Good','2024-01-01'),(4,4,'Paperback','Good','2024-01-01'),(5,5,'Paperback','Good','2024-01-01'),(6,14,'Paperback','Good','2024-01-01'),(7,15,'Paperback','Good','2024-01-01'),(8,16,'Paperback','Good','2024-01-01'),(9,17,'Paperback','Good','2024-01-01'),(10,18,'Paperback','Good','2024-01-01'),(11,19,'Paperback','Good','2024-01-01'),(12,20,'Paperback','Good','2024-01-01'),(13,21,'Paperback','Good','2024-01-01'),(14,22,'Paperback','Good','2024-01-01'),(15,1,'Paperback','Good','2024-01-01'),(16,2,'Paperback','Good','2024-01-01'),(17,3,'Paperback','Good','2024-01-01'),(18,9,'Paperback','Good','2024-01-01'),(19,10,'Paperback','Good','2024-01-01'),(20,11,'Paperback','Good','2024-01-01'),(21,12,'Paperback','Good','2024-01-01'),(22,13,'Paperback','Good','2024-01-01');
+/*!40000 ALTER TABLE `book_copies` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `books`
 --
 
@@ -63,7 +92,7 @@ CREATE TABLE `books` (
   CONSTRAINT `books_ibfk_1` FOREIGN KEY (`author_id`) REFERENCES `authors` (`id`),
   CONSTRAINT `books_ibfk_2` FOREIGN KEY (`genre_id`) REFERENCES `genres` (`id`),
   CONSTRAINT `books_ibfk_3` FOREIGN KEY (`publisher_id`) REFERENCES `publishers` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -72,7 +101,7 @@ CREATE TABLE `books` (
 
 LOCK TABLES `books` WRITE;
 /*!40000 ALTER TABLE `books` DISABLE KEYS */;
-INSERT INTO `books` VALUES (1,'Mistborn: The Final Empire',2006,'0765350386',3,2,6),(2,'Mistborn: The Well of Ascension',2007,'0765316886',3,2,6),(3,'Mistborn: The Hero of Ages',2008,'0765316892',3,2,6),(4,'The Eye of the World',1990,'0812509621',2,2,6),(5,'The Great Hunt',1990,'0812509648',2,2,6),(6,'The Shining',1977,'0385121679',1,4,NULL),(7,'The Stand',1978,'0385121679',1,2,NULL),(8,'Misery',1987,'0670813648',1,4,NULL),(9,'American Gods: The Annotated Edition',2002,'0380973650',4,2,10),(10,'Harry Potter and the Sorcerer\'s Stone: The Illustrated Edition',2015,'0545790356',5,2,7),(11,'Harry Potter and the Chamber of Secrets: The Illustrated Edition',2016,'0545840994',5,2,7),(12,'Harry Potter and the Prisoner of Azkaban: The Illustrated Edition',2017,'0545899933',5,2,7),(13,'Harry Potter and the Goblet of Fire: The Illustrated Edition',2019,'1338298754',5,2,7),(14,'The Eye of the World',1990,'0812509621',2,2,6),(15,'The Great Hunt',1990,'0812509648',2,2,6),(16,'The Dragon Reborn',1991,'0812509656',2,2,6),(17,'The Shadow Rising',1992,'0812513476',2,2,6),(18,'The Fires of Heaven',1993,'0812550294',2,2,6),(19,'Lord of Chaos',1994,'0812550294',2,2,6),(20,'A Crown of Swords',1996,'0312857071',2,2,6),(21,'The Path of Daggers',1998,'0312866656',2,2,6),(22,'Winter\'s Heart',2000,'0312863924',2,2,6),(23,'Crossroads of Twilight',2003,'0312864599',2,2,6),(24,'Knife of Dreams',2005,'0312873070',2,2,6);
+INSERT INTO `books` VALUES (1,'Mistborn: The Final Empire',2006,'0765350386',3,2,6),(2,'Mistborn: The Well of Ascension',2007,'0765316886',3,2,6),(3,'Mistborn: The Hero of Ages',2008,'0765316892',3,2,6),(4,'The Eye of the World',1990,'0812509621',2,2,6),(5,'The Great Hunt',1990,'0812509648',2,2,6),(6,'The Shining',1977,'0385121679',1,4,NULL),(7,'The Stand',1978,'0385121679',1,2,NULL),(8,'Misery',1987,'0670813648',1,4,NULL),(9,'American Gods: The Annotated Edition',2002,'0380973650',4,2,10),(10,'Harry Potter and the Sorcerer\'s Stone: The Illustrated Edition',2015,'0545790356',5,2,7),(11,'Harry Potter and the Chamber of Secrets: The Illustrated Edition',2016,'0545840994',5,2,7),(12,'Harry Potter and the Prisoner of Azkaban: The Illustrated Edition',2017,'0545899933',5,2,7),(13,'Harry Potter and the Goblet of Fire: The Illustrated Edition',2019,'1338298754',5,2,7),(14,'The Dragon Reborn',1991,'0812509656',2,2,6),(15,'The Shadow Rising',1992,'0812513476',2,2,6),(16,'The Fires of Heaven',1993,'0812550294',2,2,6),(17,'Lord of Chaos',1994,'0812550294',2,2,6),(18,'A Crown of Swords',1996,'0312857071',2,2,6),(19,'The Path of Daggers',1998,'0312866656',2,2,6),(20,'Winter\'s Heart',2000,'0312863924',2,2,6),(21,'Crossroads of Twilight',2003,'0312864599',2,2,6),(22,'Knife of Dreams',2005,'0312873070',2,2,6);
 /*!40000 ALTER TABLE `books` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -127,6 +156,63 @@ LOCK TABLES `publishers` WRITE;
 INSERT INTO `publishers` VALUES (6,'Tor Books','New York',1980),(7,'Scholastic','New York',1920),(8,'Wizards of the Coast','Renton',1990),(9,'DC Comics','Burbank',1935),(10,'HarperCollins','London',1987),(11,'Penguin Random House','New York',2013),(12,'Simon & Schuster','New York',1924);
 /*!40000 ALTER TABLE `publishers` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `user_books`
+--
+
+DROP TABLE IF EXISTS `user_books`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `user_books` (
+  `user_id` int NOT NULL,
+  `book_copy_id` int NOT NULL,
+  `date_added` date DEFAULT NULL,
+  PRIMARY KEY (`user_id`,`book_copy_id`),
+  KEY `book_copy_id` (`book_copy_id`),
+  CONSTRAINT `user_books_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
+  CONSTRAINT `user_books_ibfk_2` FOREIGN KEY (`book_copy_id`) REFERENCES `book_copies` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user_books`
+--
+
+LOCK TABLES `user_books` WRITE;
+/*!40000 ALTER TABLE `user_books` DISABLE KEYS */;
+/*!40000 ALTER TABLE `user_books` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `users` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `username` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `first_name` varchar(255) DEFAULT NULL,
+  `last_name` varchar(255) DEFAULT NULL,
+  `gender` varchar(50) DEFAULT NULL,
+  `join_date` date DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username` (`username`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `users`
+--
+
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -137,4 +223,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-09-15 22:42:58
+-- Dump completed on 2025-09-18  5:27:23
